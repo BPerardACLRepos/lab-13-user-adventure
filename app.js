@@ -1,29 +1,29 @@
-// const questions = [];
+//make constants for url categories
+//Returns 10 questions, no defined category
+const url = 'https://opentdb.com/api.php?amount=15';
 
-
-// fetch('https://opentdb.com/api.php?amount=10').then(response => response.json()).then(data => {
-//     console.log(data);
-//     questions.push(...data.results);
-// });
-
-// for (let item of questions) {
-//     console.log(item);
-// }
-
-async function asyncCall() {
-    let url = 'https://opentdb.com/api.php?amount=10';
-    let response = await fetch(url);
-
-
-
-    let test = await response.json();
-    localStorage.setItem('questions', JSON.stringify(test.results));
+async function asyncGetQuestions(urlAPI) {
+    const response = await fetch(url);
+    const responseArray = await response.json();
+    const questionsArray = responseArray.results;
+    return questionsArray;
 }
 
-const stringQuests = localStorage.getItem('questions');
-const questions = JSON.parse(stringQuests);
+async function asyncSetQuestionsLocally(url, KEY) {
+    const questions = await asyncGetQuestions(url);
+    setStorageItem(KEY, questions);
+}
 
-for (let question of questions) {
-    let fixed = question.question;
-    console.log(fixed);
+function setStorageItem(KEY, value) {
+    const stringyItem = JSON.stringify(value);
+    localStorage.setItem(KEY, stringyItem);
+}
+
+function getStorageItem(KEY) {
+    const stringyItem = localStorage.getItem(KEY);
+    return JSON.parse(stringyItem);
+}
+
+function removeStoredItem(KEY) {
+    localStorage.removeItem(KEY);
 }
