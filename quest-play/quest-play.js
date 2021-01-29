@@ -13,13 +13,14 @@ const userInfo = document.querySelector('#user-information');
 const questionsP = document.querySelector('#questions p');
 const answersDiv = document.querySelector('#answers');
 
+const user = getStorageItem(USER);
 let correctAnswers = 0;
 let currentQuestion = 0;
 let questionsArray = [];
 
 
 function updateUserInfo() {
-    const user = getStorageItem(USER);
+    // const user = getStorageItem(USER);
     userInfo.textContent = '';
 
     const p = document.createElement('p');
@@ -44,7 +45,7 @@ async function askQuestion() {
     }
 
     const questionObject = questionsArray[currentQuestion];
-    questionsP.innerHTML = questionObject.question;
+    questionsP.textContent = questionObject.question;
     const answerArray = [...questionObject.incorrect_answers];
     const randomIndex = Math.floor(Math.random() * answerArray.length + 1);
     answerArray.splice(randomIndex, 0, questionObject.correct_answer)

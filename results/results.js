@@ -3,6 +3,7 @@ import { USER } from '../constants.js';
 
 const outcomeTitle = document.querySelector('#outcome-title');
 const outcomeSummary = document.querySelector('#outcome-summary');
+const playAgainButton = document.querySelector('#play-again');
 
 const user = getStorageItem(USER);
 
@@ -31,3 +32,7 @@ if (user.lives === 0) {
 const p = document.createElement('p');
 p.textContent = `FINAL STATS: Completed Quests ${user.completedQuests} - Correct Answers ${user.correctAnswers} - Remaining Lives ${user.lives} - Remaining Skips ${user.skips}`;
 outcomeSummary.append(p);
+
+playAgainButton.addEventListener('click', () => {
+    window.location = '../';
+});
