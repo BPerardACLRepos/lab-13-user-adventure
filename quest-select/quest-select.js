@@ -1,5 +1,5 @@
 import { getStorageItem } from '../storage-utils.js';
-import { asyncGetQuestions } from '../async-utils.js';
+import { asyncGetData } from '../async-utils.js';
 import { CATEGORIES_ARRAY_KEY, CATEGORIES_URL, USER } from '../constants.js';
 
 const questIntro = document.querySelector('#quest-selection-intro p');
@@ -26,7 +26,7 @@ async function createQuestOptions() {
     const select = document.createElement('select');
     select.name = `quest-id`;
 
-    const categoryArray = await asyncGetQuestions(CATEGORIES_URL, CATEGORIES_ARRAY_KEY);
+    const categoryArray = await asyncGetData(CATEGORIES_URL, CATEGORIES_ARRAY_KEY);
 
     for (let category of categoryArray) {
         const option = document.createElement('option');

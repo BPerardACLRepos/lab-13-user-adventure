@@ -11,8 +11,10 @@ userCreationForm.addEventListener('submit', (e) => {
         name: formData.get('name'),
         difficulty: formData.get('difficulty'),
         lives: 3,
-        correctAnswers: 0,
         skips: 1,
+        correctAnswers: 0,
+        completedQuests: 0,
+        streak: 0,
     };
 
     setStorageItem('user', user);
