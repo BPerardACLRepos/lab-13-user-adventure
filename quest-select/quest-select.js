@@ -24,17 +24,17 @@ async function createQuestOptions() {
     questSelect.append(p);
 
     const select = document.createElement('select');
-    select.name = `quests`;
+    select.name = `quest-id`;
 
     const button = document.createElement('button');
     button.textContent = `It's go time!`;
 
-    const catArray = await asyncGetQuestions(CATEGORIES_URL, CATEGORIES_ARRAY_KEY);
+    const categoryArray = await asyncGetQuestions(CATEGORIES_URL, CATEGORIES_ARRAY_KEY);
 
-    for (let cat of catArray) {
+    for (let category of categoryArray) {
         const option = document.createElement('option');
-        option.value = cat.id;
-        option.textContent = cat.name;
+        option.value = category.id;
+        option.textContent = category.name;
         select.append(option);
     }
 
