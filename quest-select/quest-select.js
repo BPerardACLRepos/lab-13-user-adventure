@@ -3,7 +3,7 @@ import { asyncGetQuestions } from '../async-utils.js';
 import { CATEGORIES_ARRAY_KEY, CATEGORIES_URL, USER } from '../constants.js';
 
 const questIntro = document.querySelector('#quest-selection-intro p');
-const questSelect = document.querySelector('#quest-selection-options form');
+const questSelect = document.querySelector('#quest-selection-options');
 const user = getStorageItem(USER);
 
 function difficultyMessage() {
@@ -26,9 +26,6 @@ async function createQuestOptions() {
     const select = document.createElement('select');
     select.name = `quest-id`;
 
-    const button = document.createElement('button');
-    button.textContent = `It's go time!`;
-
     const categoryArray = await asyncGetQuestions(CATEGORIES_URL, CATEGORIES_ARRAY_KEY);
 
     for (let category of categoryArray) {
@@ -37,6 +34,12 @@ async function createQuestOptions() {
         option.textContent = category.name;
         select.append(option);
     }
+
+    const button = document.createElement('button');
+    button.textContent = `It's go time!`;
+    button.addEventListener('click', () => {
+        window.location = `../quest-play/?id=${select.value}&name=${select.options[select.selectedIndex].text}`;
+    });
 
     questSelect.append(select, button);
 }
