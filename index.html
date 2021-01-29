@@ -31,8 +31,22 @@
             </div>
             <div id="user-creation">
                 <form>
-                    Enter your title and press begin to get started.
-                    <input type="text" />
+                    <label>
+                        Enter your title and press begin to get started.
+                        <input name="name" required />
+                    </label>
+                    <label>
+                        I'm too young to die.
+                        <input type="radio" name="difficulty" value="3" required />
+                    </label>
+                    <label>
+                        Hurt me plenty!
+                        <input type="radio" name="difficulty" value="4" />
+                    </label>
+                    <label>
+                        NIGHTMARE!!1
+                        <input type="radio" name="difficulty" value="5" />
+                    </label>
                     <button id="begin">BEGIN!</button>
                 </form>
             </div>

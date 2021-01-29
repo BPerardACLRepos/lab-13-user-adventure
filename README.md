@@ -1,5 +1,11 @@
 # lab-13-user-adventure
 
+#### CONSTANTS
+- User Object
+- Difficulty Levels?
+- Category URLs
+- Round Question Count? function
+
 # Quizmaster!
 - User attempts to make it through five rounds of questions
  > Rounds Question Count: 5, 4, 3, 2, 1
@@ -14,6 +20,7 @@
      name: user,
      lives: 3,
      skips: 1,
+     *difficulty,
      *streak: 5/10 earn skip (skip/wrong negates streak)
      correct_answers: 0-15
      *games_played, questions_correct, questions_wrong
