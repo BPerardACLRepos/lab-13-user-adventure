@@ -2,14 +2,14 @@
 //have question number selector for question retrieval and quests
 
 //Returns 10 questions, no defined category
-const url = 'https://opentdb.com/api.php?amount=15';
+// const url = 'https://opentdb.com/api.php?amount=15';
 
 
 //async functions
-export async function asyncGetQuestions(urlAPI) {
+export async function asyncGetQuestions(url, arrayKeyName) {
     const response = await fetch(url);
     const responseArray = await response.json();
-    const questionsArray = responseArray.results;
+    const questionsArray = responseArray[arrayKeyName];
     return questionsArray;
 }
 

@@ -1,7 +1,9 @@
 import { getStorageItem } from '../storage-utils.js';
-import { USER } from '../constants.js';
+import { asyncGetQuestions } from '../async-utils.js';
+import { CATEGORIES_ARRAY_KEY, CATEGORIES_URL, USER } from '../constants.js';
 
 const questIntro = document.querySelector('#quest-selection-intro p');
+const questSelect = document.querySelector('#quest-selection-options form');
 const user = getStorageItem(USER);
 
 function difficultyMessage() {
@@ -13,18 +15,31 @@ function difficultyMessage() {
     } else {
         message += `You seem like a person on a mission, so I'll let you get to it. If you come out of the other end of this in one piece, all of your wildest dreams will come true!`
     }
-    return message;
+    questIntro.textContent = message;
 }
 
-function createQuestOptions() {
+async function createQuestOptions() {
+    const p = document.createElement('p');
+    p.textContent = `It's time to choose your next quest.`;
+    questSelect.append(p);
 
+    const select = document.createElement('select');
+    select.name = `quests`;
+
+    const button = document.createElement('button');
+    button.textContent = `It's go time!`;
+
+    const catArray = await asyncGetQuestions(CATEGORIES_URL, CATEGORIES_ARRAY_KEY);
+
+    for (let cat of catArray) {
+        const option = document.createElement('option');
+        option.value = cat.id;
+        option.textContent = cat.name;
+        select.append(option);
+    }
+
+    questSelect.append(select, button);
 }
 
-
-
-
-
-
-
-
-questIntro.textContent = difficultyMessage();
+difficultyMessage();
+createQuestOptions();
