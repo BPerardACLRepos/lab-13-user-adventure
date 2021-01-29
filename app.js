@@ -1,5 +1,23 @@
-// import functions and grab DOM elements
+import { setStorageItem } from './storage-utils.js';
 
-// initialize state
+const userCreationForm = document.querySelector('#user-creation form');
 
-// set event listeners to update state and DOM
+userCreationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(userCreationForm);
+
+    const user = {
+        name: formData.get('name'),
+        difficulty: formData.get('difficulty'),
+        lives: 3,
+        skips: 1,
+        correctAnswers: 0,
+        completedQuests: 0,
+        streak: 0,
+    };
+
+    setStorageItem('user', user);
+
+    window.location = './quest-select/';
+});
